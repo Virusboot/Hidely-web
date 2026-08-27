@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidely — Discover Places, Stay Connected & Share Moments</title>
+    <meta name="description" content="Hidely is a location-contextual social platform for discovering nearby places, stays, voice/video calling, and sharing moments.">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #1C0D5A 0%, #2B1564 50%, #0F072E 100%);
+            --accent-purple: #9333EA;
+            --accent-cyan: #38BDF8;
+            --text-light: #F8FAFC;
+            --text-dim: #94A3B8;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --card-border: rgba(255, 255, 255, 0.1);
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-gradient);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            padding: 24px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #FFFFFF, #C084FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        nav a {
+            color: var(--text-dim);
+            text-decoration: none;
+            margin-left: 24px;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+        nav a:hover { color: var(--text-light); }
+        
+        .hero {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .badge {
+            background: rgba(147, 51, 234, 0.2);
+            border: 1px solid var(--accent-purple);
+            color: #D8B4FE;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E2E8F0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p.subtitle {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 680px;
+            margin-bottom: 40px;
+        }
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #9333EA 0%, #7E22CE 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+            transition: transform 0.2s;
+        }
+        .btn-primary:hover { transform: translateY(-2px); }
+        .btn-secondary {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            max-width: 1100px;
+            margin: 60px auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 32px 24px;
+            border-radius: 16px;
+            backdrop-filter: blur(8px);
+            text-align: left;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: #F1F5F9;
+        }
+        .feature-card p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        footer {
+            padding: 32px 40px;
+            border-top: 1px solid var(--card-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        footer a { color: var(--text-dim); text-decoration: none; }
+        footer a:hover { color: var(--text-light); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">HIDELY</div>
+        <nav>
+            <a href="#features">Features</a>
+            <a href="privacy_policy.html">Privacy Policy</a>
+            <a href="mailto:support@kittuvirusstudio.in">Support</a>
+        </nav>
+    </header>
+
+    <main class="hero">
+        <div class="badge">LOCATION-CONTEXTUAL SOCIAL PLATFORM</div>
+        <h1>Explore Places, Share Moments & Stay Connected</h1>
+        <p class="subtitle">Hidely empowers travellers and social creators to discover nearby stays, explore locations with smart offline routing, and make HD voice & video calls seamlessly.</p>
+        <div class="cta-group">
+            <a href="#" class="btn-primary">Download on Google Play</a>
+            <a href="privacy_policy.html" class="btn-secondary">Read Privacy Policy</a>
+        </div>
+
+        <div class="features" id="features">
+            <div class="feature-card">
+                <h3>📍 Nearby Discovery</h3>
+                <p>Find nearby stays, hidden gems, and travel recommendations with smart geocoding and offline navigation.</p>
+            </div>
+            <div class="feature-card">
+                <h3>📞 Voice & Video Calls</h3>
+                <p>Connect instantly with friends and community creators using high-definition, secure real-time calls.</p>
+            </div>
+            <div class="feature-card">
+                <h3>🔒 Privacy First</h3>
+                <p>Your data security is prioritized with strict encryption, contextual permissions, and full user control.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div>&copy; 2026 Hidely — A Kittu Virus Studio Experience</div>
+        <div>
+            <a href="privacy_policy.html">Privacy Policy</a> &nbsp;|&nbsp;
+            <a href="mailto:support@kittuvirusstudio.in">Contact Support</a>
+        </div>
+    </footer>
+</body>
+</html>
