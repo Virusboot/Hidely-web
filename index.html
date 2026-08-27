@@ -3,444 +3,475 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hidely — Explore Places, Share Moments & Connect Seamlessly</title>
-    <meta name="description" content="Hidely is the premier location-contextual social platform. Discover nearby stays, navigate with offline maps, share travel moments, and make crystal-clear voice/video calls.">
+    <title>Hidely — Discover Places, Offline Maps & HD Calls</title>
+    <meta name="description" content="Hidely is the premier location-contextual social platform for discovering nearby stays, navigating offline, and making crystal-clear HD voice & video calls.">
 
-    <!-- Google Fonts -->
+    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-dark: #0A041A;
-            --bg-card: rgba(255, 255, 255, 0.04);
-            --bg-card-hover: rgba(255, 255, 255, 0.08);
-            --border-glow: rgba(168, 85, 247, 0.25);
-            --primary-purple: #9333EA;
-            --primary-pink: #EC4899;
-            --primary-cyan: #38BDF8;
+            --bg: #06030F;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-glass: rgba(20, 10, 45, 0.5);
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(168, 85, 247, 0.35);
+            
+            --purple: #8B5CF6;
+            --pink: #EC4899;
+            --cyan: #06B6D4;
+            --green: #10B981;
+            
             --text-main: #FFFFFF;
-            --text-sub: #A1A1AA;
-            --gradient-brand: linear-gradient(135deg, #A855F7 0%, #EC4899 50%, #3B82F6 100%);
-            --gradient-btn: linear-gradient(135deg, #9333EA 0%, #C084FC 100%);
+            --text-sub: #94A3B8;
+            --text-muted: #64748B;
+            
+            --grad-brand: linear-gradient(135deg, #C084FC 0%, #E879F9 40%, #38BDF8 100%);
+            --grad-card: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+            --grad-btn: linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
 
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg-dark);
+            background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
 
-        h1, h2, h3, h4, .brand-font {
-            font-family: 'Outfit', sans-serif;
+        h1, h2, h3, h4, .font-syne {
+            font-family: 'Syne', sans-serif;
         }
 
-        /* Ambient Glow & Grid Background */
-        .bg-grid {
-            position: absolute;
-            top: 0; left: 0; right: 0; height: 1200px;
-            background-image: radial-gradient(rgba(147, 51, 234, 0.15) 1px, transparent 1px);
-            background-size: 32px 32px;
+        /* Dribbble Mesh Gradient Aura Background */
+        .mesh-bg {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            z-index: -2;
+            overflow: hidden;
             pointer-events: none;
-            z-index: -1;
         }
-
-        .glow-orb {
+        .aura {
             position: absolute;
             border-radius: 50%;
             filter: blur(140px);
+            opacity: 0.45;
+            animation: floatAura 18s ease-in-out infinite alternate;
+        }
+        .aura-1 { width: 650px; height: 650px; background: #7C3AED; top: -200px; left: 15%; }
+        .aura-2 { width: 550px; height: 550px; background: #DB2777; top: 250px; right: -150px; animation-delay: -6s; }
+        .aura-3 { width: 500px; height: 500px; background: #0284C7; bottom: -150px; left: -100px; animation-delay: -12s; }
+
+        @keyframes floatAura {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(60px, 40px) scale(1.08); }
+            100% { transform: translate(-40px, 70px) scale(0.95); }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+            background-size: 40px 40px;
             pointer-events: none;
             z-index: -1;
         }
-        .orb-1 { width: 500px; height: 500px; background: rgba(147, 51, 234, 0.25); top: -100px; left: 20%; }
-        .orb-2 { width: 400px; height: 400px; background: rgba(236, 72, 153, 0.2); top: 300px; right: -100px; }
 
-        /* Header */
+        /* Navbar */
         header {
-            max-width: 1240px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 24px 32px;
+            padding: 28px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: relative;
-            z-index: 10;
+            z-index: 50;
         }
-
-        .logo-container {
+        .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
         }
-
-        .logo-icon {
-            width: 42px;
-            height: 42px;
-            background: var(--gradient-brand);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 900;
-            font-size: 22px;
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
-        }
-
-        .logo-text {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: #FFF;
-        }
-
-        nav {
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-
-        nav a {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav a:hover { color: var(--text-main); }
-
-        .btn-nav {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            padding: 10px 22px;
-            border-radius: 30px;
-            color: var(--text-main) !important;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .btn-nav:hover {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 1240px;
-            margin: 60px auto 100px;
-            padding: 0 32px;
-            text-align: center;
-            position: relative;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(147, 51, 234, 0.12);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: #E9D5FF;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 28px;
-            backdrop-filter: blur(8px);
-        }
-
-        .hero-badge .pulse-dot {
-            width: 8px;
-            height: 8px;
-            background: #22C55E;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #22C55E;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-
-        .hero-title {
-            font-size: clamp(42px, 6vw, 76px);
-            font-weight: 900;
-            line-height: 1.1;
-            letter-spacing: -1.5px;
-            margin-bottom: 24px;
-        }
-
-        .hero-title .gradient-text {
-            background: var(--gradient-brand);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-desc {
-            font-size: clamp(16px, 2vw, 20px);
-            color: var(--text-sub);
-            max-width: 760px;
-            margin: 0 auto 40px;
-            font-weight: 400;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 18px;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            margin-bottom: 70px;
-        }
-
-        .btn-main {
-            background: var(--gradient-btn);
-            color: #FFF;
-            padding: 16px 36px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 12px;
-            box-shadow: 0 12px 35px rgba(147, 51, 234, 0.45);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .btn-main:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 16px 45px rgba(147, 51, 234, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: #FFF;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-size: 16px;
-            font-weight: 600;
-            text-decoration: none;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* 3D App Preview Showcase */
-        .showcase-container {
-            position: relative;
-            max-width: 1000px;
-            margin: 0 auto;
-            perspective: 1200px;
-        }
-
-        .app-mockup-frame {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            border-radius: 36px;
-            padding: 18px;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(255, 255, 255, 0.05);
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-            align-items: center;
-        }
-
-        @media (max-width: 850px) {
-            .app-mockup-frame { grid-template-columns: 1fr; }
-        }
-
-        .widget-card {
-            background: rgba(28, 13, 90, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 24px;
-            padding: 24px;
-            text-align: left;
-            backdrop-filter: blur(15px);
-            transition: all 0.4s ease;
-        }
-
-        .widget-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(168, 85, 247, 0.4);
-            box-shadow: 0 15px 35px rgba(147, 51, 234, 0.2);
-        }
-
-        .widget-icon {
-            width: 48px;
-            height: 48px;
+        .logo-box {
+            width: 44px;
+            height: 44px;
+            background: var(--grad-btn);
             border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 22px;
-            margin-bottom: 16px;
+            font-family: 'Syne', sans-serif;
+            font-size: 24px;
+            font-weight: 800;
+            color: #FFF;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.5);
+        }
+        .logo-title {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 3px;
+            color: #FFF;
         }
 
-        .ic-purple { background: rgba(147, 51, 234, 0.2); color: #C084FC; }
-        .ic-pink { background: rgba(236, 72, 153, 0.2); color: #F472B6; }
-        .ic-cyan { background: rgba(56, 189, 248, 0.2); color: #38BDF8; }
+        nav { display: flex; gap: 36px; align-items: center; }
+        nav a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        nav a:hover { color: #FFF; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
 
-        .widget-card h4 { font-size: 18px; margin-bottom: 6px; font-weight: 700; }
-        .widget-card p { font-size: 14px; color: var(--text-sub); }
+        .btn-header {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            padding: 12px 26px;
+            border-radius: 40px;
+            color: #FFF !important;
+            backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
+        }
+        .btn-header:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
 
-        /* Stats Bar */
-        .stats-bar {
-            max-width: 1100px;
-            margin: 80px auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            padding: 40px 32px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 24px;
-            backdrop-filter: blur(10px);
+        /* Hero Container */
+        .hero {
+            max-width: 1280px;
+            margin: 40px auto 120px;
+            padding: 0 36px;
             text-align: center;
+            position: relative;
         }
 
-        .stat-num {
-            font-size: 42px;
-            font-weight: 900;
-            background: var(--gradient-brand);
+        .pill-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 8px 22px;
+            border-radius: 100px;
+            color: #DDD6FE;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+            backdrop-filter: blur(12px);
+        }
+        .green-dot {
+            width: 8px; height: 8px;
+            background: #10B981;
+            border-radius: 50%;
+            box-shadow: 0 0 12px #10B981;
+        }
+
+        .hero-heading {
+            font-size: clamp(46px, 6.5vw, 84px);
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -2px;
+            margin-bottom: 28px;
+        }
+        .gradient-span {
+            background: var(--grad-brand);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .stat-label { font-size: 14px; color: var(--text-sub); font-weight: 500; }
-
-        /* Features Section */
-        .features-section {
-            max-width: 1240px;
-            margin: 120px auto;
-            padding: 0 32px;
+        .hero-sub {
+            font-size: clamp(17px, 2vw, 21px);
+            color: var(--text-sub);
+            max-width: 780px;
+            margin: 0 auto 48px;
+            font-weight: 400;
         }
 
-        .section-header {
-            text-align: center;
-            max-width: 680px;
-            margin: 0 auto 60px;
+        .cta-row {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 80px;
         }
 
-        .section-tag {
-            color: var(--primary-pink);
+        .btn-glow {
+            background: var(--grad-btn);
+            color: #FFF;
+            padding: 18px 42px;
+            border-radius: 100px;
+            font-size: 17px;
             font-weight: 700;
-            font-size: 14px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 14px 40px rgba(139, 92, 246, 0.5);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .btn-glow:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 20px 50px rgba(139, 92, 246, 0.7);
         }
 
-        .section-title {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 16px;
+        .btn-glass {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #FFF;
+            padding: 18px 36px;
+            border-radius: 100px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            backdrop-filter: blur(16px);
+            transition: all 0.3s ease;
+        }
+        .btn-glass:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-box {
-            background: var(--bg-card);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 28px;
-            padding: 36px 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        /* DRIBBBLE HERO SHOWCASE DEVICE HARDWARE MOCKUP */
+        .dribbble-showcase {
             position: relative;
+            max-width: 1080px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Floating Badge Widgets */
+        .float-badge {
+            position: absolute;
+            background: rgba(18, 10, 40, 0.75);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 16px 22px;
+            border-radius: 20px;
+            backdrop-filter: blur(24px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            z-index: 10;
+            text-align: left;
+            animation: floatWidget 6s ease-in-out infinite alternate;
+        }
+        .fb-1 { top: 40px; left: -20px; animation-delay: 0s; }
+        .fb-2 { bottom: 60px; right: -20px; animation-delay: -3s; }
+
+        @media (max-width: 990px) {
+            .float-badge { display: none; }
+        }
+
+        @keyframes floatWidget {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-15px); }
+        }
+
+        .fb-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 20px;
+        }
+        .fb-title { font-size: 15px; font-weight: 700; color: #FFF; }
+        .fb-sub { font-size: 12px; color: var(--text-sub); }
+
+        /* Phone Screen Frame */
+        .phone-frame {
+            width: 360px;
+            height: 720px;
+            background: #0B061D;
+            border: 12px solid #1E123B;
+            border-radius: 52px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), 0 0 60px rgba(139, 92, 246, 0.3);
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-color: rgba(139, 92, 246, 0.4);
+        }
+
+        .phone-notch {
+            width: 140px; height: 28px;
+            background: #1E123B;
+            border-bottom-left-radius: 18px;
+            border-bottom-right-radius: 18px;
+            margin: 0 auto;
+            z-index: 20;
+        }
+
+        /* Phone Screen UI Mockup */
+        .phone-screen {
+            flex: 1;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            background: linear-gradient(180deg, #130B2E 0%, #0B051D 100%);
+            text-align: left;
             overflow: hidden;
         }
 
-        .feature-box:hover {
-            background: var(--bg-card-hover);
-            border-color: rgba(168, 85, 247, 0.35);
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        .mock-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 6px;
+        }
+        .mock-title { font-size: 20px; font-weight: 800; font-family: 'Syne', sans-serif; }
+        .mock-avatar { width: 34px; height: 34px; border-radius: 50%; background: var(--grad-btn); }
+
+        .mock-search {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 10px 14px;
+            font-size: 13px;
+            color: var(--text-sub);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .feature-box h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-        .feature-box p { color: var(--text-sub); font-size: 15px; }
+        .mock-card {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2) 0%, rgba(236, 72, 153, 0.15) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 20px;
+            padding: 16px;
+            position: relative;
+        }
+        .mock-card-tag { font-size: 10px; font-weight: 800; color: #F472B6; letter-spacing: 1px; }
+        .mock-card-title { font-size: 16px; font-weight: 700; margin: 4px 0; color: #FFF; }
+        .mock-card-desc { font-size: 12px; color: #CBD5E1; }
 
-        /* CTA Banner */
-        .cta-banner {
-            max-width: 1100px;
+        .mock-call-banner {
+            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+            border-radius: 18px;
+            padding: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #FFF;
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+        }
+
+        /* DRIBBBLE BENTO GRID SECTION */
+        .bento-section {
+            max-width: 1280px;
             margin: 120px auto;
-            padding: 70px 40px;
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(236, 72, 153, 0.2) 100%);
-            border: 1px solid rgba(168, 85, 247, 0.4);
-            border-radius: 36px;
+            padding: 0 36px;
+        }
+
+        .bento-head {
             text-align: center;
+            max-width: 700px;
+            margin: 0 auto 64px;
+        }
+        .bento-tag { color: #EC4899; font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+        .bento-title { font-size: clamp(34px, 4.5vw, 54px); font-weight: 800; letter-spacing: -1.5px; }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+
+        .bento-box {
+            background: var(--grad-card);
+            border: 1px solid var(--border-glass);
+            border-radius: 32px;
+            padding: 40px;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .bento-box:hover {
+            border-color: var(--border-highlight);
+            transform: translateY(-6px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .cta-banner h2 {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 900;
-            margin-bottom: 16px;
+        .col-8 { grid-column: span 8; }
+        .col-4 { grid-column: span 4; }
+        .col-6 { grid-column: span 6; }
+        .col-12 { grid-column: span 12; }
+
+        @media (max-width: 900px) {
+            .col-8, .col-4, .col-6 { grid-column: span 12; }
         }
 
-        .cta-banner p {
-            color: #E9D5FF;
-            max-width: 580px;
-            margin: 0 auto 36px;
-            font-size: 17px;
+        .bento-icon {
+            width: 56px; height: 56px;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px;
+            margin-bottom: 24px;
         }
+
+        .bento-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; }
+        .bento-box p { color: var(--text-sub); font-size: 16px; line-height: 1.6; }
+
+        /* CTA BANNER */
+        .cta-box {
+            max-width: 1180px;
+            margin: 120px auto;
+            padding: 80px 48px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.25) 0%, rgba(236, 72, 153, 0.25) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 44px;
+            text-align: center;
+            position: relative;
+            backdrop-filter: blur(30px);
+            box-shadow: 0 30px 90px rgba(139, 92, 246, 0.3);
+        }
+        .cta-box h2 { font-size: clamp(34px, 4.5vw, 56px); font-weight: 800; margin-bottom: 18px; }
+        .cta-box p { color: #E9D5FF; font-size: 18px; max-width: 600px; margin: 0 auto 40px; }
 
         /* Footer */
         footer {
             border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 60px 32px 40px;
-            max-width: 1240px;
+            padding: 70px 36px 40px;
+            max-width: 1280px;
             margin: 0 auto;
         }
-
-        .footer-grid {
+        .footer-cols {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 50px;
+            gap: 48px;
+            margin-bottom: 60px;
         }
+        @media (max-width: 850px) { .footer-cols { grid-template-columns: 1fr 1fr; } }
 
-        @media (max-width: 800px) {
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        .footer-brand p { color: var(--text-sub); margin-top: 16px; font-size: 14px; max-width: 320px; }
-        .footer-title { font-size: 16px; font-weight: 700; margin-bottom: 20px; color: #FFF; }
-        .footer-links { list-style: none; }
-        .footer-links li { margin-bottom: 12px; }
-        .footer-links a { color: var(--text-sub); text-decoration: none; font-size: 14px; transition: color 0.3s; }
-        .footer-links a:hover { color: #FFF; }
+        .footer-desc { color: var(--text-sub); margin-top: 18px; font-size: 14px; max-width: 320px; }
+        .footer-head { font-size: 16px; font-weight: 700; color: #FFF; margin-bottom: 20px; }
+        .footer-list { list-style: none; }
+        .footer-list li { margin-bottom: 12px; }
+        .footer-list a { color: var(--text-sub); text-decoration: none; font-size: 14px; transition: color 0.3s; }
+        .footer-list a:hover { color: #FFF; }
 
         .footer-bottom {
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 32px;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: var(--text-sub);
+            color: var(--text-muted);
             font-size: 14px;
             flex-wrap: wrap;
             gap: 16px;
@@ -449,160 +480,178 @@
 </head>
 <body>
 
-    <div class="bg-grid"></div>
-    <div class="glow-orb orb-1"></div>
-    <div class="glow-orb orb-2"></div>
+    <div class="mesh-bg">
+        <div class="aura aura-1"></div>
+        <div class="aura aura-2"></div>
+        <div class="aura aura-3"></div>
+    </div>
+    <div class="grid-overlay"></div>
 
     <!-- Navigation Header -->
     <header>
-        <a href="#" class="logo-container">
-            <div class="logo-icon">H</div>
-            <span class="logo-text brand-font">HIDELY</span>
+        <a href="#" class="logo-wrap">
+            <div class="logo-box">H</div>
+            <span class="logo-title font-syne">HIDELY</span>
         </a>
         <nav>
             <a href="#features">Features</a>
             <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="mailto:support@kittuvirusstudio.in" class="btn-nav">Contact Support</a>
+            <a href="mailto:support@kittuvirusstudio.in" class="btn-header">Contact Support</a>
         </nav>
     </header>
 
     <!-- Main Hero -->
     <main class="hero">
-        <div class="hero-badge">
-            <span class="pulse-dot"></span> NEXT-GEN LOCATION SOCIAL APP
+        <div class="pill-badge">
+            <span class="green-dot"></span> EXPLORE THE UNEXPLORED
         </div>
 
-        <h1 class="hero-title">
+        <h1 class="hero-heading font-syne">
             Explore Places, Share Moments <br>
-            <span class="gradient-text">&amp; Stay Connected.</span>
+            <span class="gradient-span">&amp; Connect Seamlessly.</span>
         </h1>
 
-        <p class="hero-desc">
-            Hidely empowers travellers, creators, and exploration enthusiasts to discover nearby stays, navigate with smart offline routes, and make HD voice &amp; video calls seamlessly.
+        <p class="hero-sub">
+            Hidely is the next-generation location platform. Discover nearby stays, navigate with offline compass maps, and start HD voice &amp; video calls effortlessly.
         </p>
 
-        <div class="hero-cta">
-            <a href="#" class="btn-main">
+        <div class="cta-row">
+            <a href="#" class="btn-glow">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M3.609 1.814L13.792 12 3.61 22.186a1.5 1.5 0 0 1-2.122-2.122L9.549 12 1.488 3.936a1.5 1.5 0 0 1 2.121-2.122zm16.782 8.064l-4.576-4.576L13.792 7.32l4.576 4.576a1.5 1.5 0 0 0 2.023-2.018z"/></svg>
-                Download on Google Play
+                Get For Android (Play Store)
             </a>
-            <a href="privacy_policy.html" class="btn-secondary">View Privacy Policy</a>
+            <a href="privacy_policy.html" class="btn-glass">Read Privacy Policy</a>
         </div>
 
-        <!-- 3D Interactive Mockup Frame -->
-        <div class="showcase-container">
-            <div class="app-mockup-frame">
-                <div class="widget-card">
-                    <div class="widget-icon ic-purple">📍</div>
-                    <h4>Smart Offline Maps</h4>
-                    <p>Accurate compass bearings &amp; straight-line routing when offline.</p>
-                </div>
-                <div class="widget-card">
-                    <div class="widget-icon ic-pink">📞</div>
-                    <h4>HD Voice &amp; Video Calls</h4>
-                    <p>Low-latency crystal clear real-time calls powered by Zego Cloud.</p>
-                </div>
-                <div class="widget-card">
-                    <div class="widget-icon ic-cyan">🏝️</div>
-                    <h4>Nearby Stays &amp; Places</h4>
-                    <p>Discover contextual local recommendations, stays &amp; hidden spots.</p>
+        <!-- DRIBBBLE HARDWARE SHOWCASE MOCKUP -->
+        <div class="dribbble-showcase">
+            
+            <!-- Left Floating Widget -->
+            <div class="float-badge fb-1">
+                <div class="fb-icon" style="background: rgba(139, 92, 246, 0.2); color: #C084FC;">📍</div>
+                <div>
+                    <div class="fb-title">Offline GPS Routing</div>
+                    <div class="fb-sub">Direct compass navigation</div>
                 </div>
             </div>
+
+            <!-- Right Floating Widget -->
+            <div class="float-badge fb-2">
+                <div class="fb-icon" style="background: rgba(16, 185, 129, 0.2); color: #34D399;">📞</div>
+                <div>
+                    <div class="fb-title">HD Voice &amp; Video</div>
+                    <div class="fb-sub">Encrypted &amp; zero-latency</div>
+                </div>
+            </div>
+
+            <!-- Central Mobile UI Mockup Frame -->
+            <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-screen">
+                    <div class="mock-header">
+                        <div class="mock-title">Hidely Explorer</div>
+                        <div class="mock-avatar"></div>
+                    </div>
+
+                    <div class="mock-search">
+                        🔍 Search nearby stays, places &amp; friends...
+                    </div>
+
+                    <div class="mock-card">
+                        <div class="mock-card-tag">FEATURED DESTINATION</div>
+                        <div class="mock-card-title">Manali Valley Resort</div>
+                        <div class="mock-card-desc">⭐ 4.9 (128 reviews) • 2.4 km away</div>
+                    </div>
+
+                    <div class="mock-call-banner">
+                        <div style="font-size: 20px;">🔊</div>
+                        <div style="flex: 1;">
+                            <div style="font-size: 13px; font-weight: 700;">Incoming HD Voice Call</div>
+                            <div style="font-size: 11px; opacity: 0.9;">Elena (Travel Creator)</div>
+                        </div>
+                    </div>
+
+                    <div class="mock-card" style="background: rgba(255, 255, 255, 0.04);">
+                        <div class="mock-card-tag" style="color: #38BDF8;">GPS NAVIGATION</div>
+                        <div class="mock-card-title">Bearing: 45° N/NE</div>
+                        <div class="mock-card-desc">Proceed straight 350m along path.</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </main>
 
-    <!-- Stats Section -->
-    <section class="stats-bar">
-        <div>
-            <div class="stat-num">50K+</div>
-            <div class="stat-label">Active Explorers</div>
-        </div>
-        <div>
-            <div class="stat-num">4.9★</div>
-            <div class="stat-label">App Rating</div>
-        </div>
-        <div>
-            <div class="stat-num">100+</div>
-            <div class="stat-label">Destinations</div>
-        </div>
-        <div>
-            <div class="stat-num">99.9%</div>
-            <div class="stat-label">Uptime &amp; Privacy</div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section" id="features">
-        <div class="section-header">
-            <div class="section-tag">UNMATCHED CAPABILITIES</div>
-            <h2 class="section-title">Built For The Modern Explorer</h2>
-            <p style="color: var(--text-sub);">Hidely combines social discovery, offline resilience, and encrypted communications into one seamless app.</p>
+    <!-- DRIBBBLE BENTO GRID -->
+    <section class="bento-section" id="features">
+        <div class="bento-head">
+            <div class="bento-tag">UNRIVALED EXPERIENCE</div>
+            <h2 class="bento-title font-syne">Engineered For Exploration</h2>
         </div>
 
-        <div class="features-grid">
-            <div class="feature-box">
-                <h3>🗺️ Contextual Map Discovery</h3>
-                <p>Explore nearby places, restaurants, stays, and scenic spots tailored dynamically to your active coordinates.</p>
+        <div class="bento-grid">
+            <div class="bento-box col-8">
+                <div class="bento-icon" style="background: rgba(139, 92, 246, 0.15); color: #C084FC;">🗺️</div>
+                <h3>Contextual Nearby Discovery</h3>
+                <p>Dynamically discover verified stays, local cafes, scenic spots, and hidden attractions customized precisely to your live coordinates and travel preferences.</p>
             </div>
-            <div class="feature-box">
-                <h3>📡 Offline Navigation Fallback</h3>
-                <p>Never get lost. Hidely calculates straight-line bearing trajectories even without active cellular network connectivity.</p>
+
+            <div class="bento-box col-4">
+                <div class="bento-icon" style="background: rgba(16, 185, 129, 0.15); color: #34D399;">📡</div>
+                <h3>Offline GPS Resilience</h3>
+                <p>Never lose your way. Hidely computes bearing calculations and straight-line routes even in offline zones.</p>
             </div>
-            <div class="feature-box">
-                <h3>📱 Real-Time Calling</h3>
-                <p>Experience zero-drop HD audio and video calls with community members and friends worldwide.</p>
+
+            <div class="bento-box col-4">
+                <div class="bento-icon" style="background: rgba(236, 72, 153, 0.15); color: #F472B6;">📞</div>
+                <h3>HD Voice &amp; Video</h3>
+                <p>Connect with travel creators and friends globally via low-latency Zego Cloud calls.</p>
             </div>
-            <div class="feature-box">
-                <h3>📸 Rich Creator Feed</h3>
-                <p>Share travel stories, videos, and multi-photo reels with your followers and local travel circles.</p>
-            </div>
-            <div class="feature-box">
-                <h3>🔒 Privacy &amp; Data Security</h3>
-                <p>Strict end-to-end security protocol. Your location data is strictly contextual and never sold to third parties.</p>
-            </div>
-            <div class="feature-box">
-                <h3>👥 Multi-Account Support</h3>
-                <p>Seamlessly switch between personal, creator, and travel personas within a single tap.</p>
+
+            <div class="bento-box col-8">
+                <div class="bento-icon" style="background: rgba(56, 189, 248, 0.15); color: #38BDF8;">🔒</div>
+                <h3>Strict Data Security &amp; Privacy</h3>
+                <p>Your location data is strictly processed for live context. We enforce end-to-end encryption protocols and never sell user data.</p>
             </div>
         </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="cta-banner">
-        <h2>Ready To Start Exploring?</h2>
-        <p>Join thousands of travellers discovering incredible locations and connecting worldwide with Hidely.</p>
-        <a href="#" class="btn-main">Get Hidely For Android</a>
+    <!-- CTA BANNER -->
+    <section class="cta-box">
+        <h2 class="font-syne">Start Your Journey Today</h2>
+        <p>Download Hidely for Android and unlock a new way to explore, connect, and share.</p>
+        <a href="#" class="btn-glow">Download On Google Play</a>
     </section>
 
-    <!-- Footer -->
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <a href="#" class="logo-container">
-                    <div class="logo-icon">H</div>
-                    <span class="logo-text brand-font">HIDELY</span>
+        <div class="footer-cols">
+            <div>
+                <a href="#" class="logo-wrap">
+                    <div class="logo-box">H</div>
+                    <span class="logo-title font-syne">HIDELY</span>
                 </a>
-                <p>The premier location-contextual social platform for discovering nearby stays, navigating offline, and sharing moments.</p>
+                <p class="footer-desc">The next-generation location platform for discovering nearby stays, navigating offline, and making HD calls.</p>
             </div>
             <div>
-                <h4 class="footer-title">Platform</h4>
-                <ul class="footer-links">
+                <h4 class="footer-head">Product</h4>
+                <ul class="footer-list">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#">Google Play Store</a></li>
-                    <li><a href="#">Release Notes</a></li>
+                    <li><a href="#">Release Build</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Legal &amp; Safety</h4>
-                <ul class="footer-links">
+                <h4 class="footer-head">Legal</h4>
+                <ul class="footer-list">
                     <li><a href="privacy_policy.html">Privacy Policy</a></li>
                     <li><a href="#">Terms of Service</a></li>
-                    <li><a href="#">Security Overview</a></li>
+                    <li><a href="#">Security Policy</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="footer-title">Contact</h4>
-                <ul class="footer-links">
+                <h4 class="footer-head">Support</h4>
+                <ul class="footer-list">
                     <li><a href="mailto:support@kittuvirusstudio.in">support@kittuvirusstudio.in</a></li>
                     <li><a href="https://kittuvirusstudio.in">Kittu Virus Studio</a></li>
                 </ul>
@@ -611,7 +660,7 @@
 
         <div class="footer-bottom">
             <div>&copy; 2026 Hidely — A Kittu Virus Studio Experience. All rights reserved.</div>
-            <div>Designed for Google Play Store Release</div>
+            <div>Google Play Store Pre-Release Verified</div>
         </div>
     </footer>
 
