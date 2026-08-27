@@ -6,34 +6,36 @@
     <title>Hidely — Discover Places, Offline Maps & HD Calls</title>
     <meta name="description" content="Hidely is the premier location-contextual social platform for discovering nearby stays, navigating offline, and making crystal-clear HD voice & video calls.">
 
-    <!-- Premium Google Fonts -->
+    <!-- Premium Google Fonts: Urbanist & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Urbanist:wght@600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg-light: #F8FAFC;
             --bg-card: #FFFFFF;
             --bg-subtle: #F1F5F9;
-            --border-light: rgba(124, 58, 237, 0.12);
-            --border-hover: rgba(124, 58, 237, 0.35);
+            --border-light: rgba(147, 51, 234, 0.14);
+            --border-hover: rgba(147, 51, 234, 0.4);
             
-            --purple-main: #7C3AED;
-            --pink-main: #DB2777;
-            --cyan-main: #0284C7;
-            --green-main: #10B981;
+            --purple-main: #2B1564;
+            --purple-dark: #1C0D5A;
+            --purple-vivid: #9333EA;
+            --pink-accent: #EC4899;
+            --cyan-accent: #0284C7;
+            --green-accent: #10B981;
             
             --text-dark: #0F172A;
-            --text-heading: #1E0A3C;
+            --text-heading: #1C0D5A;
             --text-sub: #475569;
             --text-muted: #64748B;
             
-            --shadow-soft: 0 20px 40px -15px rgba(28, 13, 90, 0.08);
-            --shadow-float: 0 25px 60px -15px rgba(124, 58, 237, 0.18);
+            --shadow-soft: 0 20px 40px -15px rgba(43, 21, 100, 0.08);
+            --shadow-float: 0 25px 60px -15px rgba(147, 51, 234, 0.2);
             
-            --grad-brand: linear-gradient(135deg, #7C3AED 0%, #DB2777 50%, #2563EB 100%);
-            --grad-btn: linear-gradient(135deg, #7C3AED 0%, #D946EF 100%);
+            --grad-brand: linear-gradient(135deg, #2B1564 0%, #9333EA 50%, #EC4899 100%);
+            --grad-btn: linear-gradient(135deg, #2B1564 0%, #9333EA 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -47,12 +49,12 @@
             position: relative;
         }
 
-        h1, h2, h3, h4, .font-syne {
-            font-family: 'Syne', sans-serif;
+        h1, h2, h3, h4, .font-urbanist {
+            font-family: 'Urbanist', sans-serif;
             color: var(--text-heading);
         }
 
-        /* Dribbble Pastel Light Aura Mesh Background */
+        /* Dribbble Light Aura Mesh Background */
         .mesh-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -64,10 +66,10 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(130px);
-            opacity: 0.55;
+            opacity: 0.5;
             animation: floatAura 18s ease-in-out infinite alternate;
         }
-        .aura-1 { width: 650px; height: 650px; background: #DDD6FE; top: -200px; left: 15%; }
+        .aura-1 { width: 650px; height: 650px; background: #E9D5FF; top: -200px; left: 15%; }
         .aura-2 { width: 550px; height: 550px; background: #FBCFE8; top: 250px; right: -150px; animation-delay: -6s; }
         .aura-3 { width: 500px; height: 500px; background: #BAE6FD; bottom: -150px; left: -100px; animation-delay: -12s; }
 
@@ -80,7 +82,7 @@
         .grid-overlay {
             position: absolute;
             inset: 0;
-            background-image: radial-gradient(rgba(124, 58, 237, 0.08) 1px, transparent 1px);
+            background-image: radial-gradient(rgba(147, 51, 234, 0.08) 1px, transparent 1px);
             background-size: 36px 36px;
             pointer-events: none;
             z-index: -1;
@@ -90,38 +92,24 @@
         header {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 28px 36px;
+            padding: 24px 36px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: relative;
             z-index: 50;
         }
+
         .logo-wrap {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
             text-decoration: none;
         }
-        .logo-box {
-            width: 44px;
-            height: 44px;
-            background: var(--grad-btn);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Syne', sans-serif;
-            font-size: 24px;
-            font-weight: 800;
-            color: #FFF;
-            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.35);
-        }
-        .logo-title {
-            font-size: 26px;
-            font-weight: 800;
-            letter-spacing: 3px;
-            color: var(--text-heading);
+
+        .logo-img {
+            height: 48px;
+            object-fit: contain;
         }
 
         nav { display: flex; gap: 36px; align-items: center; }
@@ -132,7 +120,7 @@
             font-weight: 600;
             transition: all 0.3s;
         }
-        nav a:hover { color: var(--purple-main); }
+        nav a:hover { color: var(--purple-vivid); }
 
         .btn-header {
             background: #FFFFFF;
@@ -148,13 +136,13 @@
             color: #FFF !important;
             border-color: var(--purple-main);
             transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
+            box-shadow: 0 8px 20px rgba(43, 21, 100, 0.25);
         }
 
         /* Hero Container */
         .hero {
             max-width: 1280px;
-            margin: 40px auto 120px;
+            margin: 30px auto 120px;
             padding: 0 36px;
             text-align: center;
             position: relative;
@@ -164,16 +152,16 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(124, 58, 237, 0.08);
-            border: 1px solid rgba(124, 58, 237, 0.2);
+            background: rgba(147, 51, 234, 0.08);
+            border: 1px solid rgba(147, 51, 234, 0.25);
             padding: 8px 22px;
             border-radius: 100px;
-            color: var(--purple-main);
+            color: var(--purple-vivid);
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
         }
         .green-dot {
             width: 8px; height: 8px;
@@ -183,8 +171,8 @@
         }
 
         .hero-heading {
-            font-size: clamp(46px, 6.5vw, 84px);
-            font-weight: 800;
+            font-size: clamp(48px, 6.5vw, 86px);
+            font-weight: 900;
             line-height: 1.08;
             letter-spacing: -2px;
             margin-bottom: 28px;
@@ -200,7 +188,7 @@
             color: var(--text-sub);
             max-width: 780px;
             margin: 0 auto 48px;
-            font-weight: 400;
+            font-weight: 500;
         }
 
         .cta-row {
@@ -218,17 +206,17 @@
             padding: 18px 42px;
             border-radius: 100px;
             font-size: 17px;
-            font-weight: 700;
+            font-weight: 800;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 12px;
-            box-shadow: 0 14px 35px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 14px 35px rgba(43, 21, 100, 0.35);
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
         .btn-glow:hover {
             transform: translateY(-4px) scale(1.03);
-            box-shadow: 0 20px 45px rgba(124, 58, 237, 0.5);
+            box-shadow: 0 20px 45px rgba(43, 21, 100, 0.5);
         }
 
         .btn-glass {
@@ -238,7 +226,7 @@
             padding: 18px 36px;
             border-radius: 100px;
             font-size: 17px;
-            font-weight: 600;
+            font-weight: 700;
             text-decoration: none;
             box-shadow: var(--shadow-soft);
             transition: all 0.3s ease;
@@ -249,7 +237,7 @@
             box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
         }
 
-        /* DRIBBBLE LIGHT HARDWARE MOCKUP */
+        /* DRIBBBLE LIGHT SHOWCASE HARDWARE MOCKUP */
         .dribbble-showcase {
             position: relative;
             max-width: 1080px;
@@ -262,7 +250,7 @@
         /* Floating Light Badge Widgets */
         .float-badge {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             border: 1px solid var(--border-light);
             padding: 16px 24px;
             border-radius: 22px;
@@ -291,7 +279,7 @@
             display: flex; align-items: center; justify-content: center;
             font-size: 22px;
         }
-        .fb-title { font-size: 15px; font-weight: 700; color: var(--text-heading); }
+        .fb-title { font-size: 15px; font-weight: 800; color: var(--text-heading); font-family: 'Urbanist', sans-serif; }
         .fb-sub { font-size: 13px; color: var(--text-sub); }
 
         /* Sleek Silver/White Phone Frame */
@@ -301,7 +289,7 @@
             background: #FFFFFF;
             border: 12px solid #E2E8F0;
             border-radius: 52px;
-            box-shadow: 0 40px 90px -20px rgba(124, 58, 237, 0.25), 0 0 0 1px rgba(124, 58, 237, 0.15);
+            box-shadow: 0 40px 90px -20px rgba(43, 21, 100, 0.25), 0 0 0 1px rgba(147, 51, 234, 0.15);
             overflow: hidden;
             position: relative;
             display: flex;
@@ -324,7 +312,7 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-            background: linear-gradient(180deg, #F8FAFC 0%, #EEF2FF 100%);
+            background: linear-gradient(180deg, #F8FAFC 0%, #FAF5FF 100%);
             text-align: left;
             overflow: hidden;
         }
@@ -335,7 +323,7 @@
             align-items: center;
             margin-top: 4px;
         }
-        .mock-title { font-size: 20px; font-weight: 800; font-family: 'Syne', sans-serif; color: var(--text-heading); }
+        .mock-title-img { height: 24px; object-fit: contain; }
         .mock-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-btn); }
 
         .mock-search {
@@ -358,8 +346,8 @@
             padding: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
         }
-        .mock-card-tag { font-size: 10px; font-weight: 800; color: var(--pink-main); letter-spacing: 1px; }
-        .mock-card-title { font-size: 16px; font-weight: 700; margin: 4px 0; color: var(--text-heading); }
+        .mock-card-tag { font-size: 10px; font-weight: 800; color: var(--pink-accent); letter-spacing: 1px; }
+        .mock-card-title { font-size: 16px; font-weight: 800; margin: 4px 0; color: var(--text-heading); font-family: 'Urbanist', sans-serif; }
         .mock-card-desc { font-size: 12px; color: var(--text-sub); }
 
         .mock-call-banner {
@@ -385,8 +373,8 @@
             max-width: 700px;
             margin: 0 auto 64px;
         }
-        .bento-tag { color: var(--pink-main); font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
-        .bento-title { font-size: clamp(34px, 4.5vw, 54px); font-weight: 800; letter-spacing: -1.5px; }
+        .bento-tag { color: var(--pink-accent); font-weight: 800; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+        .bento-title { font-size: clamp(34px, 4.5vw, 54px); font-weight: 900; letter-spacing: -1.5px; }
 
         .bento-grid {
             display: grid;
@@ -425,7 +413,7 @@
             margin-bottom: 24px;
         }
 
-        .bento-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; color: var(--text-heading); }
+        .bento-box h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; color: var(--text-heading); font-family: 'Urbanist', sans-serif; }
         .bento-box p { color: var(--text-sub); font-size: 16px; line-height: 1.65; }
 
         /* LIGHT CTA BANNER */
@@ -433,14 +421,14 @@
             max-width: 1180px;
             margin: 120px auto;
             padding: 80px 48px;
-            background: linear-gradient(135deg, #7C3AED 0%, #DB2777 100%);
+            background: linear-gradient(135deg, #2B1564 0%, #9333EA 50%, #EC4899 100%);
             border-radius: 44px;
             text-align: center;
             color: #FFF;
             position: relative;
-            box-shadow: 0 30px 80px rgba(124, 58, 237, 0.35);
+            box-shadow: 0 30px 80px rgba(43, 21, 100, 0.35);
         }
-        .cta-box h2 { font-size: clamp(34px, 4.5vw, 56px); font-weight: 800; color: #FFF; margin-bottom: 18px; }
+        .cta-box h2 { font-size: clamp(34px, 4.5vw, 56px); font-weight: 900; color: #FFF; margin-bottom: 18px; font-family: 'Urbanist', sans-serif; }
         .cta-box p { color: #F3E8FF; font-size: 18px; max-width: 600px; margin: 0 auto 40px; }
 
         .btn-white {
@@ -478,11 +466,11 @@
         @media (max-width: 850px) { .footer-cols { grid-template-columns: 1fr 1fr; } }
 
         .footer-desc { color: var(--text-sub); margin-top: 18px; font-size: 14px; max-width: 320px; }
-        .footer-head { font-size: 16px; font-weight: 700; color: var(--text-heading); margin-bottom: 20px; }
+        .footer-head { font-size: 16px; font-weight: 800; color: var(--text-heading); margin-bottom: 20px; font-family: 'Urbanist', sans-serif; }
         .footer-list { list-style: none; }
         .footer-list li { margin-bottom: 12px; }
         .footer-list a { color: var(--text-sub); text-decoration: none; font-size: 14px; transition: color 0.3s; }
-        .footer-list a:hover { color: var(--purple-main); }
+        .footer-list a:hover { color: var(--purple-vivid); }
 
         .footer-bottom {
             padding-top: 32px;
@@ -509,8 +497,7 @@
     <!-- Navigation Header -->
     <header>
         <a href="#" class="logo-wrap">
-            <div class="logo-box">H</div>
-            <span class="logo-title font-syne">HIDELY</span>
+            <img src="assets/images/logo_horizontal_color.png" alt="HIDELY" class="logo-img" onerror="this.src='assets/images/logo.png'">
         </a>
         <nav>
             <a href="#features">Features</a>
@@ -525,7 +512,7 @@
             <span class="green-dot"></span> EXPLORE THE UNEXPLORED
         </div>
 
-        <h1 class="hero-heading font-syne">
+        <h1 class="hero-heading font-urbanist">
             Explore Places, Share Moments <br>
             <span class="gradient-span">&amp; Connect Seamlessly.</span>
         </h1>
@@ -547,7 +534,7 @@
             
             <!-- Left Floating Widget -->
             <div class="float-badge fb-1">
-                <div class="fb-icon" style="background: rgba(124, 58, 237, 0.1); color: #7C3AED;">📍</div>
+                <div class="fb-icon" style="background: rgba(147, 51, 234, 0.1); color: #9333EA;">📍</div>
                 <div>
                     <div class="fb-title">Offline GPS Routing</div>
                     <div class="fb-sub">Direct compass navigation</div>
@@ -568,7 +555,7 @@
                 <div class="phone-notch"></div>
                 <div class="phone-screen">
                     <div class="mock-header">
-                        <div class="mock-title">Hidely Explorer</div>
+                        <img src="assets/images/logo_horizontal_color.png" alt="Hidely" class="mock-title-img" onerror="this.style.display='none'">
                         <div class="mock-avatar"></div>
                     </div>
 
@@ -605,12 +592,12 @@
     <section class="bento-section" id="features">
         <div class="bento-head">
             <div class="bento-tag">UNRIVALED EXPERIENCE</div>
-            <h2 class="bento-title font-syne">Engineered For Exploration</h2>
+            <h2 class="bento-title font-urbanist">Engineered For Exploration</h2>
         </div>
 
         <div class="bento-grid">
             <div class="bento-box col-8">
-                <div class="bento-icon" style="background: rgba(124, 58, 237, 0.1); color: #7C3AED;">🗺️</div>
+                <div class="bento-icon" style="background: rgba(147, 51, 234, 0.1); color: #9333EA;">🗺️</div>
                 <h3>Contextual Nearby Discovery</h3>
                 <p>Dynamically discover verified stays, local cafes, scenic spots, and hidden attractions customized precisely to your live coordinates and travel preferences.</p>
             </div>
@@ -622,7 +609,7 @@
             </div>
 
             <div class="bento-box col-4">
-                <div class="bento-icon" style="background: rgba(219, 39, 119, 0.1); color: #DB2777;">📞</div>
+                <div class="bento-icon" style="background: rgba(236, 72, 153, 0.1); color: #EC4899;">📞</div>
                 <h3>HD Voice &amp; Video</h3>
                 <p>Connect with travel creators and friends globally via low-latency Zego Cloud calls.</p>
             </div>
@@ -637,7 +624,7 @@
 
     <!-- LIGHT CTA BANNER -->
     <section class="cta-box">
-        <h2 class="font-syne">Start Your Journey Today</h2>
+        <h2 class="font-urbanist">Start Your Journey Today</h2>
         <p>Download Hidely for Android and unlock a new way to explore, connect, and share.</p>
         <a href="#" class="btn-white">Download On Google Play</a>
     </section>
@@ -647,8 +634,7 @@
         <div class="footer-cols">
             <div>
                 <a href="#" class="logo-wrap">
-                    <div class="logo-box">H</div>
-                    <span class="logo-title font-syne">HIDELY</span>
+                    <img src="assets/images/logo_horizontal_color.png" alt="HIDELY" class="logo-img" onerror="this.src='assets/images/logo.png'">
                 </a>
                 <p class="footer-desc">The next-generation location platform for discovering nearby stays, navigating offline, and making HD calls.</p>
             </div>
