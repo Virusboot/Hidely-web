@@ -6,7 +6,7 @@
     <title>Hidely — Discover Places, Offline Maps & HD Calls</title>
     <meta name="description" content="Hidely is the premier location-contextual social platform for discovering nearby stays, navigating offline, and making crystal-clear HD voice & video calls.">
 
-    <!-- Google Fonts: Public Sans & Outfit (Logo Font) -->
+    <!-- Google Fonts: Public Sans & Outfit -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -36,7 +36,6 @@
             
             --grad-brand: linear-gradient(135deg, #1C0D5A 0%, #9333EA 50%, #EC4899 100%);
             --grad-btn: linear-gradient(135deg, #2B1564 0%, #9333EA 100%);
-            --grad-tab-active: linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(236, 72, 153, 0.1) 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -202,7 +201,7 @@
             justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .btn-glow {
@@ -242,7 +241,7 @@
             transform: translateY(-2px);
         }
 
-        /* MODERN GLASSY TAB SWITCHER BAR */
+        /* MODERN GLASSY TABS PREVIEW SWITCHER */
         .glass-tabs-container {
             display: flex;
             gap: 12px;
@@ -251,12 +250,12 @@
             flex-wrap: wrap;
             margin: 0 auto 50px;
             padding: 8px;
-            max-width: 820px;
-            background: rgba(255, 255, 255, 0.65);
+            max-width: 840px;
+            background: rgba(255, 255, 255, 0.75);
             border: 1px solid var(--border-glass);
             border-radius: 100px;
             backdrop-filter: blur(24px);
-            box-shadow: 0 15px 35px rgba(43, 21, 100, 0.06);
+            box-shadow: 0 15px 35px rgba(43, 21, 100, 0.08);
         }
 
         .glass-tab {
@@ -286,7 +285,7 @@
             box-shadow: 0 8px 20px rgba(147, 51, 234, 0.18);
         }
 
-        /* DRIBBBLE LIGHT SHOWCASE HARDWARE MOCKUP */
+        /* DRIBBBLE SHOWCASE PHONE HARDWARE FRAME WITH REAL APP SCREENSHOTS */
         .dribbble-showcase {
             position: relative;
             max-width: 1080px;
@@ -299,7 +298,7 @@
         /* Floating Light Badge Widgets */
         .float-badge {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             border: 1px solid var(--border-glass);
             padding: 16px 24px;
             border-radius: 22px;
@@ -312,8 +311,8 @@
             text-align: left;
             animation: floatWidget 6s ease-in-out infinite alternate;
         }
-        .fb-1 { top: 40px; left: -20px; animation-delay: 0s; }
-        .fb-2 { bottom: 60px; right: -20px; animation-delay: -3s; }
+        .fb-1 { top: 60px; left: -10px; animation-delay: 0s; }
+        .fb-2 { bottom: 80px; right: -10px; animation-delay: -3s; }
 
         @media (max-width: 990px) { .float-badge { display: none; } }
 
@@ -331,14 +330,14 @@
         .fb-title { font-size: 15px; font-weight: 700; color: var(--text-heading); }
         .fb-sub { font-size: 13px; color: var(--text-sub); }
 
-        /* Sleek Silver/White Phone Frame */
+        /* Real Phone Frame Container */
         .phone-frame {
-            width: 360px;
-            height: 720px;
-            background: #FFFFFF;
-            border: 12px solid #E2E8F0;
+            width: 350px;
+            height: 740px;
+            background: #000000;
+            border: 12px solid #1E123B;
             border-radius: 52px;
-            box-shadow: 0 40px 90px -20px rgba(43, 21, 100, 0.25), 0 0 0 1px rgba(147, 51, 234, 0.15);
+            box-shadow: 0 40px 90px -20px rgba(43, 21, 100, 0.35), 0 0 0 1px rgba(147, 51, 234, 0.25);
             overflow: hidden;
             position: relative;
             display: flex;
@@ -346,71 +345,28 @@
         }
 
         .phone-notch {
-            width: 140px; height: 28px;
-            background: #E2E8F0;
-            border-bottom-left-radius: 18px;
-            border-bottom-right-radius: 18px;
+            width: 130px; height: 26px;
+            background: #1E123B;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
             margin: 0 auto;
-            z-index: 20;
+            z-index: 30;
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
         }
 
-        /* Phone Screen Light UI Mockup */
-        .phone-screen {
-            flex: 1;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            background: linear-gradient(180deg, #F8FAFC 0%, #FAF5FF 100%);
-            text-align: left;
-            overflow: hidden;
+        /* Real Screenshot Display */
+        .phone-screen-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            border-radius: 40px;
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
-        .mock-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 4px;
-        }
-        .mock-title-img { height: 24px; object-fit: contain; }
-        .mock-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-btn); }
-
-        .mock-search {
-            background: #FFFFFF;
-            border: 1px solid var(--border-glass);
-            border-radius: 16px;
-            padding: 12px 16px;
-            font-size: 13px;
-            color: var(--text-sub);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-        }
-
-        .mock-card {
-            background: #FFFFFF;
-            border: 1px solid var(--border-glass);
-            border-radius: 20px;
-            padding: 16px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-        }
-        .mock-card-tag { font-size: 10px; font-weight: 800; color: var(--pink-accent); letter-spacing: 1px; }
-        .mock-card-title { font-size: 16px; font-weight: 700; margin: 4px 0; color: var(--text-heading); }
-        .mock-card-desc { font-size: 12px; color: var(--text-sub); }
-
-        .mock-call-banner {
-            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-            border-radius: 18px;
-            padding: 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            color: #FFF;
-            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
-        }
-
-        /* DRIBBBLE LIGHT BENTO GRID WITH GLASS CARDS */
+        /* DRIBBBLE LIGHT BENTO GRID */
         .bento-section {
             max-width: 1280px;
             margin: 120px auto;
@@ -581,18 +537,18 @@
 
         <!-- MODERN GLASSY TABS PREVIEW SWITCHER -->
         <div class="glass-tabs-container">
-            <button class="glass-tab active" onclick="switchTab('offline', this)">
-                📍 Offline Navigation
+            <button class="glass-tab active" onclick="switchAppScreen('feed', this)">
+                📸 Explore Feed
             </button>
-            <button class="glass-tab" onclick="switchTab('calls', this)">
-                📞 HD Voice &amp; Video
+            <button class="glass-tab" onclick="switchAppScreen('map', this)">
+                📍 GPS Map Navigation
             </button>
-            <button class="glass-tab" onclick="switchTab('discovery', this)">
-                🏝️ Nearby Stays &amp; Places
+            <button class="glass-tab" onclick="switchAppScreen('profile', this)">
+                👤 User Profile
             </button>
         </div>
 
-        <!-- DRIBBBLE LIGHT SHOWCASE HARDWARE MOCKUP -->
+        <!-- DRIBBBLE SHOWCASE HARDWARE MOCKUP WITH REAL APP SCREENSHOTS -->
         <div class="dribbble-showcase">
             
             <!-- Left Floating Widget -->
@@ -613,39 +569,10 @@
                 </div>
             </div>
 
-            <!-- Central Silver/White Mobile Frame -->
+            <!-- Central Mobile Phone Frame -->
             <div class="phone-frame">
                 <div class="phone-notch"></div>
-                <div class="phone-screen" id="mockScreen">
-                    <div class="mock-header">
-                        <img src="assets/images/logo_horizontal_color.png" alt="Hidely" class="mock-title-img" onerror="this.style.display='none'">
-                        <div class="mock-avatar"></div>
-                    </div>
-
-                    <div class="mock-search">
-                        🔍 Search nearby stays, places &amp; friends...
-                    </div>
-
-                    <div class="mock-card">
-                        <div class="mock-card-tag">FEATURED DESTINATION</div>
-                        <div class="mock-card-title">Manali Valley Resort</div>
-                        <div class="mock-card-desc">⭐ 4.9 (128 reviews) • 2.4 km away</div>
-                    </div>
-
-                    <div class="mock-call-banner">
-                        <div style="font-size: 20px;">🔊</div>
-                        <div style="flex: 1;">
-                            <div style="font-size: 13px; font-weight: 700;">Incoming HD Voice Call</div>
-                            <div style="font-size: 11px; opacity: 0.95;">Elena (Travel Creator)</div>
-                        </div>
-                    </div>
-
-                    <div class="mock-card" style="background: #F8FAFC;">
-                        <div class="mock-card-tag" style="color: #0284C7;">GPS NAVIGATION</div>
-                        <div class="mock-card-title">Bearing: 45° N/NE</div>
-                        <div class="mock-card-desc">Proceed straight 350m along path.</div>
-                    </div>
-                </div>
+                <img id="realAppImage" src="assets/images/real_app_feed.png" alt="Hidely App Screen" class="phone-screen-img">
             </div>
 
         </div>
@@ -733,64 +660,21 @@
     </footer>
 
     <script>
-        function switchTab(type, el) {
+        function switchAppScreen(type, el) {
             document.querySelectorAll('.glass-tab').forEach(t => t.classList.remove('active'));
             el.classList.add('active');
-            const screen = document.getElementById('mockScreen');
-            if (type === 'offline') {
-                screen.innerHTML = `
-                    <div class="mock-header">
-                        <img src="assets/images/logo_horizontal_color.png" alt="Hidely" class="mock-title-img">
-                        <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-search">🧭 Compass Bearing: 45° N/NE</div>
-                    <div class="mock-card" style="background: #FAF5FF; border-color: rgba(147, 51, 234, 0.3);">
-                        <div class="mock-card-tag" style="color: #9333EA;">OFFLINE MAP ROUTE</div>
-                        <div class="mock-card-title">Straight Line Guidance</div>
-                        <div class="mock-card-desc">Distance: 3.2 km • Est. 12 mins</div>
-                    </div>
-                    <div class="mock-card">
-                        <div class="mock-card-tag" style="color: #10B981;">LOCATION RECOVERY</div>
-                        <div class="mock-card-title">GPS Signal Active</div>
-                        <div class="mock-card-desc">Proceed along bearing path to destination.</div>
-                    </div>
-                `;
-            } else if (type === 'calls') {
-                screen.innerHTML = `
-                    <div class="mock-header">
-                        <img src="assets/images/logo_horizontal_color.png" alt="Hidely" class="mock-title-img">
-                        <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-call-banner" style="padding: 20px; flex-direction: column; text-align: center;">
-                        <div style="width: 60px; height: 60px; border-radius: 50%; background: #FFF; color: #10B981; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 8px;">📞</div>
-                        <div style="font-size: 16px; font-weight: 800;">HD Voice Call Active</div>
-                        <div style="font-size: 12px; opacity: 0.9;">04:25 • Encrypted End-to-End</div>
-                    </div>
-                    <div class="mock-card">
-                        <div class="mock-card-tag">ZEGO CLOUD ENGINE</div>
-                        <div class="mock-card-title">Crystal Clear Audio</div>
-                        <div class="mock-card-desc">Low-latency zero packet loss connection.</div>
-                    </div>
-                `;
-            } else if (type === 'discovery') {
-                screen.innerHTML = `
-                    <div class="mock-header">
-                        <img src="assets/images/logo_horizontal_color.png" alt="Hidely" class="mock-title-img">
-                        <div class="mock-avatar"></div>
-                    </div>
-                    <div class="mock-search">🔍 Explore nearby stays &amp; cafes...</div>
-                    <div class="mock-card">
-                        <div class="mock-card-tag" style="color: #EC4899;">TOP STAY</div>
-                        <div class="mock-card-title">Mountain Breeze Cottage</div>
-                        <div class="mock-card-desc">⭐ 4.9 (240 reviews) • 1.2 km away</div>
-                    </div>
-                    <div class="mock-card">
-                        <div class="mock-card-tag" style="color: #0284C7;">NEARBY CAFE</div>
-                        <div class="mock-card-title">The Alpine Brew House</div>
-                        <div class="mock-card-desc">⭐ 4.8 (85 reviews) • 600m away</div>
-                    </div>
-                `;
-            }
+            const img = document.getElementById('realAppImage');
+            img.style.opacity = '0';
+            setTimeout(() => {
+                if (type === 'feed') {
+                    img.src = 'assets/images/real_app_feed.png';
+                } else if (type === 'map') {
+                    img.src = 'assets/images/real_app_map.png';
+                } else if (type === 'profile') {
+                    img.src = 'assets/images/real_app_profile.png';
+                }
+                img.style.opacity = '1';
+            }, 200);
         }
     </script>
 </body>
