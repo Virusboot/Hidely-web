@@ -1,454 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>Hidely — Explore Places & Connect Seamlessly</title>
-    <meta name="description" content="Hidely is the premier social platform for discovering hidden places, offline navigation, and connecting with travel squad.">
+<!DOCTYPE html><html><head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
 
-    <!-- Google Fonts: Public Sans & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
 
-    <style>
-        :root {
-            --bg-light: #F6F9FC;
-            --purple-main: #2B1564;
-            --purple-dark: #1C0D5A;
-            --purple-vivid: #7C3AED;
-            --text-dark: #0F172A;
-            --text-muted: #64748B;
-            --grad-brand: linear-gradient(135deg, #1C0D5A 0%, #2B1564 40%, #7C3AED 100%);
-            --grad-btn: linear-gradient(135deg, #2B1564 0%, #7C3AED 100%);
-        }
+    For more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Public Sans', 'Outfit', sans-serif; }
+    This is a placeholder for base href that will be replaced by the value of
+    the `--base-href` argument provided to `flutter build`.
+  -->
+  <base href="/">
 
-        body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            overflow-x: hidden;
-            position: relative;
-        }
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Hidely is the premier social platform for discovering hidden places and exploring nearby stays.">
+  <title>Hidely — Social Places Discovery</title>
+  <link rel="manifest" href="manifest.json">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <style id="splash-screen-style">
+    html {
+      height: 100%
+    }
 
-        /* Ambient Background */
-        .mesh-bg {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            overflow: hidden;
-            pointer-events: none;
-        }
-        .aura {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(140px);
-            opacity: 0.65;
-            animation: floatAura 18s ease-in-out infinite alternate;
-        }
-        .aura-1 { width: 650px; height: 650px; background: #E0F2FE; top: -150px; left: 5%; }
-        .aura-2 { width: 550px; height: 550px; background: #DDD6FE; top: 250px; right: -100px; }
-        .aura-3 { width: 500px; height: 500px; background: #F3E8FF; bottom: -150px; left: 10%; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      background-color: #ffffff;
+          background-size: 100% 100%;
+    }
 
-        @keyframes floatAura {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 40px) scale(1.05); }
-        }
+    .center {
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
 
-        /* Top Header */
-        header {
-            max-width: 1240px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 20px 32px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .logo-img { height: 42px; object-fit: contain; }
+    .contain {
+      display:block;
+      width:100%; height:100%;
+      object-fit: contain;
+    }
 
-        /* Main Split 2-Column Container (Instagram Web Style) */
-        .insta-container {
-            max-width: 1140px;
-            width: 100%;
-            margin: 10px auto;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 60px;
-            flex: 1;
-        }
+    .stretch {
+      display:block;
+      width:100%; height:100%;
+    }
 
-        /* Left Showcase Column */
-        .left-showcase {
-            flex: 1;
-            max-width: 540px;
-        }
-        .hero-heading {
-            font-size: clamp(38px, 4.5vw, 56px);
-            font-weight: 800;
-            line-height: 1.12;
-            letter-spacing: -1.2px;
-            color: var(--purple-dark);
-            margin-bottom: 24px;
-        }
-        .gradient-span {
-            background: var(--grad-brand);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .hero-sub {
-            font-size: 17px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 32px;
-        }
+    .cover {
+      display:block;
+      width:100%; height:100%;
+      object-fit: cover;
+    }
 
-        /* Preview Phone Showcase */
-        .phone-frame-container {
-            position: relative;
-            width: 100%;
-            max-width: 440px;
-            height: 380px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .phone-preview-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 28px;
-            box-shadow: 0 25px 60px -15px rgba(43, 21, 100, 0.25);
-            transition: all 0.4s ease;
-        }
+    .bottom {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      -ms-transform: translate(-50%, 0);
+      transform: translate(-50%, 0);
+    }
 
-        /* Right Instagram-Style Login Card */
-        .right-auth-card {
-            width: 100%;
-            max-width: 380px;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(124, 58, 237, 0.18);
-            border-radius: 24px;
-            padding: 36px 32px;
-            box-shadow: 0 20px 50px -10px rgba(43, 21, 100, 0.12);
-        }
+    .bottomLeft {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+    }
 
-        .auth-brand {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-        .auth-brand img {
-            height: 40px;
-            object-fit: contain;
-        }
-        .auth-brand p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 6px;
-        }
-
-        .input-group {
-            margin-bottom: 14px;
-        }
-        .input-group input {
-            width: 100%;
-            height: 48px;
-            padding: 0 16px;
-            background: #F8FAFC;
-            border: 1px solid #E2E8F0;
-            border-radius: 12px;
-            font-size: 14px;
-            color: var(--text-dark);
-            outline: none;
-            transition: all 0.2s ease;
-        }
-        .input-group input:focus {
-            border-color: var(--purple-vivid);
-            background: #FFFFFF;
-            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
-        }
-
-        .btn-login {
-            width: 100%;
-            height: 48px;
-            background: var(--grad-btn);
-            color: #FFFFFF;
-            border: none;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 8px 20px rgba(43, 21, 100, 0.25);
-            transition: all 0.2s ease;
-        }
-        .btn-login:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 12px 25px rgba(124, 58, 237, 0.35);
-        }
-
-        .divider {
-            display: flex;
-            align-items: center;
-            margin: 22px 0;
-            color: #94A3B8;
-            font-size: 12px;
-            font-weight: 700;
-        }
-        .divider::before, .divider::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: #E2E8F0;
-        }
-        .divider span { padding: 0 12px; }
-
-        .btn-secondary-link {
-            width: 100%;
-            height: 44px;
-            background: #F1F5F9;
-            color: var(--purple-dark);
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 10px;
-            transition: all 0.2s;
-        }
-        .btn-secondary-link:hover {
-            background: #E2E8F0;
-        }
-
-        .btn-web-app-direct {
-            width: 100%;
-            height: 44px;
-            background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-            color: #FFFFFF;
-            border: none;
-            border-radius: 12px;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.25);
-            transition: all 0.2s;
-        }
-        .btn-web-app-direct:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 10px 22px rgba(16, 185, 129, 0.35);
-        }
-
-        .error-badge {
-            margin-top: 14px;
-            padding: 10px;
-            background: #FEF2F2;
-            border: 1px solid #FCA5A5;
-            border-radius: 10px;
-            color: #991B1B;
-            font-size: 13px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        /* Instagram Style Footer */
-        footer {
-            max-width: 1140px;
-            width: 100%;
-            margin: 20px auto 30px;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 12px;
-        }
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        .footer-links a:hover { color: var(--purple-vivid); }
-        .copyright {
-            font-size: 12px;
-            color: #94A3B8;
-        }
-
-        /* Responsive Breakpoints */
-        @media (max-width: 900px) {
-            .insta-container {
-                flex-direction: column;
-                gap: 40px;
-                text-align: center;
-            }
-            .left-showcase { max-width: 100%; }
-            .phone-frame-container { height: 300px; }
-        }
-    </style>
+    .bottomRight {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  </style>
+  <script id="splash-screen-script">
+    function removeSplashFromWeb() {
+      document.getElementById("splash")?.remove();
+      document.getElementById("splash-branding")?.remove();
+      document.body.style.background = "transparent";
+    }
+  </script>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
 </head>
 <body>
+  <picture id="splash">
+      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
+      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
+      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+  </picture>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="flutter_bootstrap.js" async=""></script>
 
-    <div class="mesh-bg">
-        <div class="aura aura-1"></div>
-        <div class="aura aura-2"></div>
-        <div class="aura aura-3"></div>
-    </div>
 
-    <!-- Header Navigation -->
-    <header>
-        <a href="/">
-            <img src="assets/images/logo_horizontal_color.png" alt="HIDELY" class="logo-img" onerror="this.src='assets/images/logo.png'">
-        </a>
-        <div style="display: flex; gap: 12px; align-items: center;">
-            <a href="/app/" class="btn-secondary-link" style="margin-bottom: 0; width: auto; padding: 0 20px;"><i class="fa-solid fa-globe"></i> Web App</a>
-            <a href="/admin/" class="btn-secondary-link" style="margin-bottom: 0; width: auto; padding: 0 20px; background: rgba(124, 58, 237, 0.1); color: var(--purple-vivid);"><i class="fa-solid fa-user-shield"></i> Admin</a>
-        </div>
-    </header>
-
-    <!-- Instagram-Style Main Container -->
-    <div class="insta-container">
-
-        <!-- Left Showcase Column -->
-        <div class="left-showcase">
-            <h1 class="hero-heading">
-                Explore everyday moments from your <br>
-                <span class="gradient-span">travel squad.</span>
-            </h1>
-            <p class="hero-sub">
-                Hidely is the premier social platform for discovering hidden places, navigating offline with compass maps, and sharing travel moments.
-            </p>
-
-            <div class="phone-frame-container">
-                <img src="assets/images/real_app_feed.png" alt="Hidely App" class="phone-preview-img" onerror="this.src='assets/images/real_app_profile.png'">
-            </div>
-        </div>
-
-        <!-- Right Instagram-Style Login Card -->
-        <div class="right-auth-card">
-            <div class="auth-brand">
-                <img src="assets/images/logo_horizontal_color.png" alt="HIDELY" onerror="this.src='assets/images/logo.png'">
-                <p>Log into your Hidely account</p>
-            </div>
-
-            <form id="insta-login-form" onsubmit="handleInstaLogin(event)">
-                <div class="input-group">
-                    <input type="text" id="insta-email" placeholder="Phone number, username or email" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="insta-password" placeholder="Password" required>
-                </div>
-
-                <button type="submit" id="insta-submit-btn" class="btn-login">
-                    <i class="fa-solid fa-right-to-bracket"></i> Log In
-                </button>
-            </form>
-
-            <div id="insta-login-error" class="error-badge" style="display: none;"></div>
-
-            <div class="divider">
-                <span>OR</span>
-            </div>
-
-            <a href="/app/" class="btn-web-app-direct">
-                <i class="fa-solid fa-compass"></i> Open Web Social Platform
-            </a>
-
-            <div style="height: 10px;"></div>
-
-            <a href="app-release.apk" download class="btn-secondary-link">
-                <i class="fa-solid fa-download"></i> Download Android APK
-            </a>
-        </div>
-
-    </div>
-
-    <!-- Instagram Style Footer -->
-    <footer>
-        <div class="footer-links">
-            <a href="/app/">Web App</a>
-            <a href="/admin/">Admin Console</a>
-            <a href="privacy_policy.html">Privacy Policy</a>
-            <a href="delete_account.html">Delete Account</a>
-            <a href="mailto:support@kittuvirusstudio.in">Support</a>
-        </div>
-        <div class="copyright">
-            &copy; 2026 Hidely from Kittu Virus Studio. All rights reserved.
-        </div>
-    </footer>
-
-    <script>
-        async function handleInstaLogin(e) {
-            e.preventDefault();
-            const email = document.getElementById('insta-email').value.trim();
-            const password = document.getElementById('insta-password').value;
-            const errBox = document.getElementById('insta-login-error');
-            const btn = document.getElementById('insta-submit-btn');
-
-            errBox.style.display = 'none';
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Logging in...';
-
-            try {
-                const res = await fetch('https://hidely-backend.onrender.com/api/auth/login', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email, password }),
-                });
-                const data = await res.json();
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Log In';
-
-                if (!res.ok) {
-                    errBox.textContent = data.error || 'Invalid username/email or password.';
-                    errBox.style.display = 'block';
-                    return;
-                }
-
-                localStorage.setItem('hidely_token', data.token);
-                localStorage.setItem('hidely_user', JSON.stringify(data.user));
-
-                if (data.user && (data.user.is_admin || data.user.email === 'admin@hidely.com')) {
-                    // Admin User -> Redirect to Admin Panel!
-                    window.location.href = '/admin/';
-                } else {
-                    // Normal User -> Redirect to Instagram-like Hidely Web App!
-                    window.location.href = '/app/';
-                }
-            } catch (err) {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Log In';
-                errBox.textContent = 'Server connection error. Please try again.';
-                errBox.style.display = 'block';
-            }
-        }
-    </script>
-</body>
-</html>
+</body></html>
