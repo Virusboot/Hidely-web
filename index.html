@@ -513,7 +513,7 @@
             <a href="#features">Features</a>
             <a href="privacy_policy.html">Privacy Policy</a>
             <a href="https://hidely-backend.onrender.com/" class="btn-header" style="background: linear-gradient(135deg, #10B981 0%, #059669 100%);"><i class="fa-solid fa-globe"></i> Open Web App</a>
-            <a href="https://hidely-backend.onrender.com/admin" class="btn-header" style="background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);"><i class="fa-solid fa-user-shield"></i> Admin Login</a>
+            <button onclick="openUnifiedLoginModal()" class="btn-header" style="background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%); border: none; cursor: pointer;"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
         </nav>
     </header>
 
@@ -667,6 +667,39 @@
         </div>
     </footer>
 
+    <!-- UNIFIED LOGIN MODAL -->
+    <div id="unified-login-modal" style="display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); align-items: center; justify-content: center; padding: 20px;">
+        <div style="background: #ffffff; width: 100%; max-width: 420px; border-radius: 24px; padding: 32px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); position: relative; font-family: 'Outfit', sans-serif;">
+            <button onclick="closeUnifiedLoginModal()" style="position: absolute; top: 20px; right: 20px; background: #F1F5F9; border: none; width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #64748B; font-size: 16px;">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div style="text-align: center; margin-bottom: 24px;">
+                <div style="width: 56px; height: 56px; background: linear-gradient(135deg, #2B1564 0%, #4F46E5 100%); border-radius: 16px; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 24px; margin-bottom: 12px; box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);">
+                    <i class="fa-solid fa-compass"></i>
+                </div>
+                <h2 style="font-size: 22px; font-weight: 800; color: #1E293B; margin: 0 0 6px 0;">Login to Hidely</h2>
+                <p style="font-size: 14px; color: #64748B; margin: 0;">Sign in to access your Web Social Feed or Admin Panel</p>
+            </div>
+
+            <form id="unified-login-form" onsubmit="handleUnifiedLogin(event)">
+                <div style="margin-bottom: 16px;">
+                    <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">Email or Username</label>
+                    <input type="text" id="unified-email" placeholder="e.g. user@hidely.com or admin@hidely.com" required style="width: 100%; height: 48px; padding: 0 16px; border: 1.5px solid #E2E8F0; border-radius: 12px; font-size: 14px; outline: none; box-sizing: border-box; transition: all 0.2s;">
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label style="display: block; font-size: 13px; font-weight: 700; color: #334155; margin-bottom: 6px;">Password</label>
+                    <input type="password" id="unified-password" placeholder="••••••••" required style="width: 100%; height: 48px; padding: 0 16px; border: 1.5px solid #E2E8F0; border-radius: 12px; font-size: 14px; outline: none; box-sizing: border-box; transition: all 0.2s;">
+                </div>
+
+                <button type="submit" id="unified-submit-btn" style="width: 100%; height: 50px; background: linear-gradient(135deg, #2B1564 0%, #4F46E5 100%); color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 15px -3px rgba(43, 21, 100, 0.3);">
+                    <i class="fa-solid fa-right-to-bracket"></i> Continue to Account
+                </button>
+            </form>
+
+            <div id="unified-login-error" style="display: none; margin-top: 16px; padding: 12px; background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 10px; color: #991B1B; font-size: 13px; font-weight: 600; text-align: center;"></div>
+        </div>
+    </div>
+
     <script>
         function switchAppScreen(type, el) {
             document.querySelectorAll('.glass-tab').forEach(t => t.classList.remove('active'));
@@ -683,6 +716,60 @@
                 }
                 img.style.opacity = '1';
             }, 200);
+        }
+
+        function openUnifiedLoginModal() {
+            document.getElementById('unified-login-modal').style.display = 'flex';
+            document.getElementById('unified-login-error').style.display = 'none';
+        }
+
+        function closeUnifiedLoginModal() {
+            document.getElementById('unified-login-modal').style.display = 'none';
+        }
+
+        async function handleUnifiedLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('unified-email').value.trim();
+            const password = document.getElementById('unified-password').value;
+            const errBox = document.getElementById('unified-login-error');
+            const btn = document.getElementById('unified-submit-btn');
+
+            errBox.style.display = 'none';
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Authenticating...';
+
+            try {
+                const res = await fetch('https://hidely-backend.onrender.com/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password }),
+                });
+                const data = await res.json();
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Continue to Account';
+
+                if (!res.ok) {
+                    errBox.textContent = data.error || 'Invalid credentials. Please try again.';
+                    errBox.style.display = 'block';
+                    return;
+                }
+
+                localStorage.setItem('hidely_token', data.token);
+                localStorage.setItem('hidely_user', JSON.stringify(data.user));
+
+                if (data.user && (data.user.is_admin || data.user.email === 'admin@hidely.com')) {
+                    // Open Admin Panel!
+                    window.location.href = '/admin';
+                } else {
+                    // Open Instagram-like Hidely Web App!
+                    window.location.href = 'https://hidely-backend.onrender.com/';
+                }
+            } catch (err) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fa-solid fa-right-to-bracket"></i> Continue to Account';
+                errBox.textContent = 'Server connection error. Please try again.';
+                errBox.style.display = 'block';
+            }
         }
     </script>
 </body>
