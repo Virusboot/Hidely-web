@@ -17,15 +17,15 @@
 
     <style>
         :root {
-            --bg-light: #F8FAFC;
-            --bg-glass-card: rgba(255, 255, 255, 0.75);
-            --bg-glass-nav: rgba(255, 255, 255, 0.85);
-            --border-glass: rgba(147, 51, 234, 0.18);
-            --border-active: rgba(147, 51, 234, 0.45);
+            --bg-light: #F6F9FC;
+            --bg-glass-card: rgba(255, 255, 255, 0.85);
+            --bg-glass-nav: rgba(255, 255, 255, 0.90);
+            --border-glass: rgba(124, 58, 237, 0.18);
+            --border-active: rgba(124, 58, 237, 0.45);
             
             --purple-main: #2B1564;
             --purple-dark: #1C0D5A;
-            --purple-vivid: #9333EA;
+            --purple-vivid: #7C3AED;
             --pink-accent: #EC4899;
             --cyan-accent: #0284C7;
             --green-accent: #10B981;
@@ -36,10 +36,10 @@
             --text-muted: #64748B;
             
             --shadow-glass: 0 20px 40px -15px rgba(43, 21, 100, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-            --shadow-float: 0 25px 60px -15px rgba(147, 51, 234, 0.22);
+            --shadow-float: 0 25px 60px -15px rgba(124, 58, 237, 0.22);
             
-            --grad-brand: linear-gradient(135deg, #1C0D5A 0%, #9333EA 50%, #EC4899 100%);
-            --grad-btn: linear-gradient(135deg, #2B1564 0%, #9333EA 100%);
+            --grad-brand: linear-gradient(135deg, #1C0D5A 0%, #2B1564 40%, #7C3AED 100%);
+            --grad-btn: linear-gradient(135deg, #2B1564 0%, #7C3AED 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
@@ -58,7 +58,7 @@
             color: var(--text-heading);
         }
 
-        /* Ambient Pastel Aura Background */
+        /* Ambient Pastel Aura Background - Matched with App Theme Gradient */
         .mesh-bg {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -70,12 +70,12 @@
             position: absolute;
             border-radius: 50%;
             filter: blur(130px);
-            opacity: 0.55;
+            opacity: 0.65;
             animation: floatAura 18s ease-in-out infinite alternate;
         }
-        .aura-1 { width: 650px; height: 650px; background: #E9D5FF; top: -200px; left: 15%; }
-        .aura-2 { width: 550px; height: 550px; background: #FBCFE8; top: 250px; right: -150px; animation-delay: -6s; }
-        .aura-3 { width: 500px; height: 500px; background: #BAE6FD; bottom: -150px; left: -100px; animation-delay: -12s; }
+        .aura-1 { width: 650px; height: 650px; background: #E0F2FE; top: -200px; left: 10%; }
+        .aura-2 { width: 550px; height: 550px; background: #DDD6FE; top: 250px; right: -150px; animation-delay: -6s; }
+        .aura-3 { width: 500px; height: 500px; background: #F3E8FF; bottom: -150px; left: -100px; animation-delay: -12s; }
 
         @keyframes floatAura {
             0% { transform: translate(0, 0) scale(1); }
